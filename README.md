@@ -2,7 +2,7 @@
 
 # Esercizio
 
-In questo esercizio, vi chiediamo di usare la classeSemaphoredi JAVAche propone una implementazione dei semafori. Potete
+In questo esercizio, vi chiediamo di usare la classe Semaphore di JAVA che propone una implementazione dei semafori. Potete
 guardare online la documentazione di questa classe e in particolari le tre funzione seguente che rappresentano l’uso dei semafori
 visto a lezione:
 
