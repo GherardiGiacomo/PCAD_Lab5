@@ -18,7 +18,7 @@ Consideriamo una piscina pubblica con _NS_ spogliatoi individuali e _NC_ armadie
 (e) Mette i suoi vestiti nel armadietto;
 (f) Rida la chiave dello spogliatoio;
 (g) Nuota (tenendosi la chiave del armadietto);
-(h) Prende la chiave di un armadietto;
+(h) Prende la chiave di un spogliatoio;
 (i) Ricupera i suoi vestiti nel armadietto;
 (j) Si riveste nello spogliatoio;
 (k) Libera lo spogliatoio;
