@@ -9,12 +9,13 @@ public class Piscina {
         armadietti = new Semaphore(nC);
     }
 
-    public void PrendeChiaveSpogliatoio() throws InterruptedException {
+    public boolean PrendeChiaveSpogliatoio() throws InterruptedException {
         try {
             spogliatoi.acquire();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     public void TempoRandom() {
@@ -25,36 +26,34 @@ public class Piscina {
         }
     }
 
-    public void PrendeChiaveArmadietto() throws InterruptedException {
+    public boolean PrendeChiaveArmadietto() throws InterruptedException {
         try {
             armadietti.acquire();
+        
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return true;
+
     }
 
-   /*  public void LasciaChiavi(int idArmadietto, int idSpogliatoio) {
-        try {
-            armadietti.release();
-            spogliatoi.release();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } */
 
-    public void LasciaChiaveSpogliatoio() throws InterruptedException{
+    public boolean LasciaChiaveSpogliatoio() throws InterruptedException{
         try {
             spogliatoi.release();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
+
     }
 
-    public void LasciaChiaveArmadietto()throws InterruptedException {
+    public boolean LasciaChiaveArmadietto()throws InterruptedException {
         try {
             armadietti.release();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
 }

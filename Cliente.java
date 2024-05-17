@@ -14,31 +14,45 @@ public class Cliente extends Thread {
     @Override
     public void run() {
         try {
-            piscina.PrendeChiaveSpogliatoio();
-            System.out.println("Cliente " + idCliente + " ha preso la chiave dello spogliatoio " + idSpogliatoio);
-            
-            piscina.PrendeChiaveArmadietto();
-            System.out.println("Cliente " + idCliente + " ha preso la chiave dell'armadietto " + idArmadietto);
-            
-            piscina.TempoRandom();
-            System.out.println("Cliente " + idCliente + " ha finito di cambiarsi");
-            
-            piscina.LasciaChiaveSpogliatoio();
-            System.out.println("Il cliente " + idCliente + " ha lasciato la chiave dello spogliatoio " + idSpogliatoio);
-            
-            piscina.TempoRandom();
-            System.out.println("Il cliente" + idCliente + " nuota");// nuota
-            
-            piscina.PrendeChiaveSpogliatoio();
-            System.out.println("Cliente " + idCliente + " ha preso la chiave dello spogliatoio " + idSpogliatoio);
-            
-            piscina.TempoRandom();
-            System.out.println("Cliente " + idCliente + " ha finito di cambiarsi"); // punti i j k
-            
-            piscina.LasciaChiaveArmadietto();
-            piscina.LasciaChiaveSpogliatoio();
-            System.out.println("Cliente " + idCliente + " ha restituito la chiave dell'armadietto " + idArmadietto
-                    + " e la chiave dello spogliatoio " + idSpogliatoio);
+            while (true) {
+                // Prima prova a prendere la chiave dello spogliatoio
+                if (piscina.PrendeChiaveSpogliatoio()) {
+                    System.out.println("Cliente " + idCliente + " ha preso la chiave dello spogliatoio " + idSpogliatoio); //punto a
+
+                    // Se ha successo, allora può prendere la chiave dell'armadietto
+                    if (piscina.PrendeChiaveArmadietto()) {
+                        System.out.println("Cliente " + idCliente + " ha preso la chiave dell'armadietto " + idArmadietto); //punto b
+
+                        piscina.TempoRandom();
+                        System.out.println("Cliente " + idCliente + " ha finito di cambiarsi");  //punti c d e 
+
+                        piscina.LasciaChiaveSpogliatoio();
+                        System.out.println("Il cliente " + idCliente + " ha lasciato la chiave dello spogliatoio " + idSpogliatoio); //punto f
+
+                        piscina.TempoRandom();
+                        System.out.println("Il cliente" + idCliente + " nuota");// punto g
+
+                        piscina.PrendeChiaveSpogliatoio();
+                        System.out.println("Cliente " + idCliente + " ha preso la chiave dello spogliatoio " + idSpogliatoio);//punto h
+
+                        piscina.TempoRandom();
+                        System.out.println("Cliente " + idCliente + " ha finito di cambiarsi"); // punti i j k
+
+                        piscina.LasciaChiaveArmadietto(); //punto l
+                        piscina.LasciaChiaveSpogliatoio(); //punto l
+
+                        System.out.println("Cliente " + idCliente + " ha restituito la chiave dell'armadietto " + idArmadietto
+                                + " e la chiave dello spogliatoio " + idSpogliatoio);
+                        break;
+                    } else {
+                        // Se non può prendere la chiave dell'armadietto, rilascia la chiave dello spogliatoio e riprova
+                        piscina.LasciaChiaveSpogliatoio();
+                        Thread.sleep(1000); // Aspetta un po' prima di riprovare
+                    }
+                } else {
+                    Thread.sleep(1000); // Aspetta un po' prima di riprovare
+                }
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
