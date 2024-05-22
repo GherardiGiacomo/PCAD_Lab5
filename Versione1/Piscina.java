@@ -9,18 +9,6 @@ public class Piscina {
         armadietti = new Semaphore(nC);
     }
 
-    public synchronized boolean PrendeChiaveSpogliatoio() {
-        if (spogliatoi.availablePermits() > 0) {
-            try {
-                spogliatoi.acquire();
-                return true;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
-    }
-
     public void TempoRandom() {
         try {
             Thread.sleep((long) (Math.random() * 1000));
@@ -28,6 +16,25 @@ public class Piscina {
             e.printStackTrace();
         }
     }
+
+    public synchronized boolean PrendeChiaveSpogliatoio() {
+        while (true) {
+            if (spogliatoi.tryAcquire()) {
+                return true;
+            } else {
+                try {
+                    System.out.println("\n\nchiave attualmente non disponibile");
+                    Thread.sleep(1000); // aspetta per 1 secondo
+                    System.out.println("\n\nIl cliente sta per provare a prendere la chiave");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+
+   
 
     public synchronized boolean PrendeChiaveArmadietto() throws InterruptedException {
         try {

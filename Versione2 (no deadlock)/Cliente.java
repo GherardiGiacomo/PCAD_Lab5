@@ -41,7 +41,7 @@ public class Cliente extends Thread {
                         piscina.LasciaChiaveArmadietto(); //punto l
                         piscina.LasciaChiaveSpogliatoio(); //punto l
 
-                        System.out.println("Cliente " + idCliente + " ha restituito la chiave dell'_ARMADIAETTO " + idArmadietto
+                        System.out.println("Cliente " + idCliente + " ha restituito la chiave dell'_ARMADIETTO " + idArmadietto
                                 + " e la chiave dello SPOGLIATOIO " + idSpogliatoio);
                         break;
                     } else {
