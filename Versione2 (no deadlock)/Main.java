@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        int numSpogliatoi = 2;
-        int numArmadietti = 5;
-        int numClienti = 6;
+        int numSpogliatoi = 1;
+        int numArmadietti = 2;
+        int numClienti = 3;
 
         Piscina piscina = new Piscina(numSpogliatoi, numArmadietti);
         for (int i = 0; i < numClienti; i++) {

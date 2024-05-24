@@ -18,19 +18,15 @@ public class Piscina {
     }
 
     public synchronized boolean PrendeChiaveSpogliatoio() {
-        while (true) {
-            if (spogliatoi.tryAcquire()) {
+        if (spogliatoi.availablePermits() > 0) {
+            try {
+                spogliatoi.acquire();
                 return true;
-            } else {
-                try {
-                    System.out.println("\n\nchiave attualmente non disponibile");
-                    Thread.sleep(1000); // aspetta per 1 secondo
-                    System.out.println("\n\nIl cliente sta per provare a prendere la chiave");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+        return false;
     }
     
 
